@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Using React</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel">
+
+    const actor = {
+      name: "Johnny",
+      lastName: "Depp",
+      age: "59",
+      nationality: "USA",
+      movies: ["Pirates of the Caribbean", "Johnny Scissors Hand", "Transcendent"],
+      education: ["Univeristy of Arts", "Univeristy of UCLA"],
+      bio: "John Christopher Depp II es un actor, productor de cine y músico estadounidense. Ha sido nominado en tres ocasiones al Óscar y recibió un Globo de Oro, un premio del Sindicato de Actores y un César.",
+      image: "http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcTHFBuj3hbauPEwXCXLDQ4RmTsDNdPAMCCJHfeIJGcm_ufKkEtoCbZDhB_ZbkG_wSA_"
+    };
+      
+
+    const Header = () => {
+    return (
+        <header className="encabezado">
+            <nav>
+                <ul className="menu">
+                    <li><a href="/">Home</a></li>
+                    <li>About</li>
+                    <li>Career</li>
+                    <li>Education</li>
+                </ul>
+            </nav>
+        </header>
+      )
+    }
+
+    const Lista = ({datos}) => {
+        const info = datos.map((dato) => <li key={dato}>{dato}</li>)
+      
+        return (info);
+    }
+
+    const Card = ({actor}) => {
+      
+      const {image, name, lastName, age, nationality, movies, education, bio} = actor;
+
+      return (
+          <div className="card">
+            <figure>
+              <img className="image" src={image} alt={name + " " + lastName} />
+              <figcaption>{name + " " + lastName}</figcaption>
+            </figure>
+            <div className="info">
+              <h3>Información personal</h3>
+                <p>Nombre: {name}</p>
+                <p>Apellido: {lastName}</p>
+                <p>Edad: {age}</p>
+                <p>Nacionalidad: {nationality}</p>
+              <h3>Experiencia en peliculas</h3>
+                <ul><Lista datos={movies}/></ul>
+              <h3>Educacion</h3>
+                <ul><Lista datos={education}/></ul>
+              <p>Biografia: {bio}</p>
+            </div>
+          </div>
+      )
+    } 
+
+    const Main = () =>{
+      return (
+          <main>
+              <Card actor={actor}/>
+          </main>
+      )
+    }
+
+    const App = (
+        <div>
+          <Header name="Clase de Revision" />
+          <Main />
+        </div>
+    )
+
+
+    const app = document.getElementById("root");
+    const root = ReactDOM.createRoot(app)
+    root.render(App)
+
+  </script>
+</body>
+
+</html>
