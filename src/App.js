@@ -16,6 +16,13 @@ function App() {
         >
           Actividad de repaso semana 1
         </a>
+        <a
+          className="App-link"
+          href="https://reloj.dami.com.ar"
+          rel="noopener noreferrer"
+        >
+          Reloj: un componente de React
+        </a>
       </header>
     </div>
   );
